@@ -1,8 +1,5 @@
 # Gaming Backlog Planner Lite
 
-🎮 Creates a weekly personalized AI-generated plan to work through your game backlog!
-## 🚀 Run It
+🎮 Creates a weekly personalized AI-generated(open-source Llama 3) plan to work through your game backlog!
 
-```bash
-pip install -r requirements.txt
-streamlit run app.py
+* Can also optionally generate gaming recommendations when you clear your backlog or need to get started!
