@@ -16,3 +16,8 @@ Call of Duty: Black Ops (5 hours),
 Call of Duty: Black Ops 2(2 hours), 
 Call of Duty Black Ops 3(3 hours), 
 Call of Duty: Black Ops 6(10 hours), 
+
+# Example 5
+Legend of Zelda: Tears of the Kingdom (20 hours), 
+Super Smash Bros Ultimate(5 hours), 
+GTA San Andreas (60 hours)
