@@ -3,7 +3,7 @@ from game_details import load_or_fetch_game_details
 from prompt_builder import create_prompt, build_prompt  # import both
 from planner import generate_plan_from_prompt
 
-st.set_page_config(page_title="Backlog Planner Lite", page_icon="🎮")
+st.set_page_config(page_title="Gaming Backlog Planner Lite", page_icon="🎮")
 st.title("🎮 Backlog Planner Lite")
 st.markdown("Enter your backlog and get a personalized weekly gaming plan!")
 
@@ -52,5 +52,5 @@ if st.button("🧠 Generate Plan"):
 
             plan = generate_plan_from_prompt(prompt)
 
-        st.success("Here's your weekly plan:")
+        st.success("Here's your weekly gaming plan:")
         st.markdown(plan, unsafe_allow_html=True)
