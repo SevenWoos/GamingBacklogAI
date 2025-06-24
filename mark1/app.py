@@ -4,8 +4,8 @@ from prompt_builder import create_prompt, build_prompt  # import both
 from planner import generate_plan_from_prompt
 
 st.set_page_config(page_title="Gaming Backlog Planner Lite", page_icon="🎮")
-st.title("🎮 Backlog Planner Lite")
-st.markdown("Enter your backlog and get a personalized weekly gaming plan!")
+st.title("🎮 Gaming Backlog Planner Lite")
+st.markdown("Enter your gaming backlog and get a personalized weekly gaming plan!")
 
 games_input = st.text_area(
     "📝 Your backlog (one game per line with optional estimated hours):",
