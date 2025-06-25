@@ -1,5 +1,8 @@
 import streamlit as st
 from planner import generate_plan_from_prompt
+from prompt_builder import create_prompt, build_prompt
+# from game_details import load_or_fetch_game_details
+
 
 st.title('🎮 Backlog Planner Lite')
 
@@ -32,4 +35,21 @@ if st.button('🧠 Generate Plan'):
         st.warning("⚠️ Please enter at least one game. You can also ask for game recommendations if you currently don't have any!")
     else:
         with st.spinner("Generating your personalized gaming plan..."):
-            
+            if want_recs and interests.strip():
+                # Use new build_prompt with recommendations
+                prompt = build_prompt(
+                    user_input=games_input,
+                    hours=time,
+                    priority=priority,
+                    game_details_db=game_details_db,
+                    want_recommendations=True,
+                    interests=interests
+                )
+            else:
+                # Use original prompt builder
+                prompt = create_prompt(games_input, time, priority, game_details_db)
+
+            plan = generate_plan_from_prompt(prompt)
+
+        st.success("Here's your weekly gaming plan:")
+        st.markdown(plan, unsafe_allow_html=True)
