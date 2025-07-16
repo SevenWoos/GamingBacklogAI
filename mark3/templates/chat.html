@@ -12,12 +12,28 @@
 <body>
   <h1>Greetings {{ user.username }}! I am your personal gaming assistant.</h1>
 
-  <div id="chat-box"></div>
-
-  <form id="chat-form">
-    <input type="text" id="user-input" placeholder="Type your message..." required>
-    <button type="submit">Send</button>
+  <!-- New form -->
+  <form id="chat-form" method="post">
+    <label for="backlog">Game Backlog (e.g., Pokémon HeartGold):</label><br>
+    <textarea id="backlog" name="backlog" rows="2" required></textarea><br><br>
+  
+    <label for="time_available">Total Time Available This Week (e.g., 26 hours):</label><br>
+    <input type="text" id="time_available" name="time_available" required><br><br>
+  
+    <label for="time_range">Time Ranges Per Day (e.g., 8PM-10PM on M/W/F, 10AM-12AM on Sat/Sun):</label><br>
+    <textarea id="time_range" name="time_range" rows="3" required></textarea><br><br>
+  
+    <label for="schedule_preference">Schedule Preference (e.g., Weekly, or list days):</label><br>
+    <input type="text" id="schedule_preference" name="schedule_preference" required><br><br>
+  
+    <label for="message">Extra Notes (Optional):</label><br>
+    <textarea id="message" name="message" rows="2"></textarea><br><br>
+  
+    <button type="submit">Generate Schedule</button>
   </form>
+
+  <div id="chat-box"></div>
+  
 
   <a href="{{ url_for('dashboard') }}">Return to dashboard</a>
   <a href="{{ url_for('logout') }}">Press here to logout!</a>
@@ -25,26 +41,35 @@
   <script>
     const chatBox = document.getElementById('chat-box');
     const form = document.getElementById('chat-form');
-    const userInput = document.getElementById('user-input');
-
+  
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
-      const message = userInput.value;
-      chatBox.innerHTML += `<p><strong>You:</strong> ${message}</p>`;
-      userInput.value = '';
 
+      // Uses FormData to grab all inputs.
+      const formData = new FormData(form);
+      const data = Object.fromEntries(formData.entries());
+  
+      chatBox.innerHTML += `<p><strong>You:</strong><br>
+        Backlog: ${data.backlog}<br>
+        Time Available: ${data.time_available}<br>
+        Time Ranges: ${data.time_range.replace(/\n/g, '<br>')}<br>
+        Schedule Preference: ${data.schedule_preference}<br>
+        ${data.message ? 'Extra: ' + data.message.replace(/\n/g, '<br>') : ''}
+      </p>`;
+  
       const response = await fetch('/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message })
+        body: JSON.stringify(data)
       });
-
-      const data = await response.json();
-
-      // Convert newlines in response to <br> for proper HTML formatting
-      const formattedResponse = data.response.replace(/\n/g, '<br>');
+  
+      const result = await response.json();
+      const formattedResponse = result.response.replace(/\n/g, '<br>');
+  
+      // Converts multi-line text (\n) into HTML line breaks <br> for both user and AI responses
       chatBox.innerHTML += `<p><strong>AI:</strong><br>${formattedResponse}</p>`;
     });
   </script>
+  
 </body>
 </html>

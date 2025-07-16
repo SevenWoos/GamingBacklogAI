@@ -9,7 +9,24 @@ chat_bp = Blueprint('chat', __name__)
 @login_required
 def chat():
     if request.method == 'POST':
-        user_input = request.json['message']
+        # Instead of only pulling one field (message) from the request JSON, we brag the ENTIRE submitted form object.
+        data = request.get_json()
+
+        # Extract fields
+        backlog = data.get('backlog', '').strip()
+        time_available = data.get('time_available', '').strip()
+        time_range = data.get('time_range', '').strip()
+        schedule_preference = data.get('schedule_preference', '').strip()
+        extra_notes = data.get('message', '').strip()
+
+        # Inject into prompt
+        user_input = f"""
+            Backlog: {backlog}
+            Time Available: {time_available}
+            Time Ranges: {time_range}
+            Schedule Preference: {schedule_preference}
+            Extra Notes: {extra_notes}
+            """
 
         # Loading prompt template
         prompt_path = os.path.join(os.path.dirname(__file__), 'prompts', 'scheduler_prompt.txt')
