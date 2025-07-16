@@ -16,3 +16,10 @@ Thumbs.db
 # Txt files
 notes.txt
 admin_notes.txt
+test_inputs.txt
+
+# py files
+ignore.py
+
+# Ignore data files
+prompts/scheduler_prompt.txt
