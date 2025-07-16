@@ -19,12 +19,11 @@
     <button type="submit">Send</button>
   </form>
 
-  <a href="{{url_for('dashboard')}}"> Return to dashboard</a>
-  <a href="{{url_for('logout')}}"> Press here to logout!</a>
-</body>
+  <a href="{{ url_for('dashboard') }}">Return to dashboard</a>
+  <a href="{{ url_for('logout') }}">Press here to logout!</a>
 
-<script>
-  const chatBox = document.getElementById('chat-box');
+  <script>
+    const chatBox = document.getElementById('chat-box');
     const form = document.getElementById('chat-form');
     const userInput = document.getElementById('user-input');
 
@@ -41,7 +40,11 @@
       });
 
       const data = await response.json();
-      chatBox.innerHTML += `<p><strong>AI:</strong> ${data.response}</p>`;
+
+      // Convert newlines in response to <br> for proper HTML formatting
+      const formattedResponse = data.response.replace(/\n/g, '<br>');
+      chatBox.innerHTML += `<p><strong>AI:</strong><br>${formattedResponse}</p>`;
     });
-</script>
+  </script>
+</body>
 </html>

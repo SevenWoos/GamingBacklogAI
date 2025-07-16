@@ -25,7 +25,7 @@ def chat():
             'http://localhost:11434/api/generate',
             json={
                 "model": "llama3",  # change based on whatever model i use
-                "prompt": user_input,
+                "prompt": full_prompt,
                 "stream": False
             }
         )
