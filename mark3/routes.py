@@ -3,6 +3,9 @@ from flask_login import login_required, current_user
 import requests
 import os
 
+# from schedule_math import trim_schedule_to_time_limit
+
+
 chat_bp = Blueprint('chat', __name__)
 
 @chat_bp.route('/chat', methods=['GET', 'POST'])
@@ -29,7 +32,8 @@ def chat():
             """
 
         # Loading prompt template
-        prompt_path = os.path.join(os.path.dirname(__file__), 'prompts', 'scheduler_prompt.txt')
+        # prompt_path = os.path.join(os.path.dirname(__file__), 'prompts', 'scheduler_prompt.txt')
+        prompt_path = os.path.join(os.path.dirname(__file__), 'prompts', 'scheduler_prompt_v2.txt')
         
         with open(prompt_path, 'r', encoding='utf-8') as f:
             prompt_template = f.read()

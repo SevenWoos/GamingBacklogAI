@@ -23,3 +23,4 @@ ignore.py
 
 # Ignore data files
 prompts/scheduler_prompt.txt
+prompts/scheduler_prompt_v2.txt
