@@ -18,7 +18,7 @@ def chat():
         # Extract fields
         backlog = data.get('backlog', '').strip()
         time_available = data.get('time_available', '').strip()
-        time_range = data.get('time_range', '').strip()
+        time_im_free = data.get('time_range', '').strip()
         schedule_preference = data.get('schedule_preference', '').strip()
         extra_notes = data.get('message', '').strip()
 
@@ -26,14 +26,16 @@ def chat():
         user_input = f"""
             Backlog: {backlog}
             Time Available: {time_available}
-            Time Ranges: {time_range}
+            Time I'm Free: {time_im_free}
             Schedule Preference: {schedule_preference}
             Extra Notes: {extra_notes}
             """
 
         # Loading prompt template
         # prompt_path = os.path.join(os.path.dirname(__file__), 'prompts', 'scheduler_prompt.txt')
-        prompt_path = os.path.join(os.path.dirname(__file__), 'prompts', 'scheduler_prompt_v2.txt')
+
+        # prompt_path = os.path.join(os.path.dirname(__file__), 'prompts', 'scheduler_prompt_v4.txt')
+        prompt_path = os.path.join(os.path.dirname(__file__), 'prompts', 'scheduler_prompt_v3.txt')
         
         with open(prompt_path, 'r', encoding='utf-8') as f:
             prompt_template = f.read()

@@ -1,0 +1,25 @@
+User Input:  
+Backlog: {Game Title}  
+Available Time: {Total hours available per week} hours  
+Available Time Range: {List daily available time ranges, e.g., "8:00PM-10:00PM on Monday, Wednesday, Friday, 8:00PM-10:30PM on Tuesday, Thursday, and 10:00AM-12:00AM on Saturday, Sunday"}  
+Schedule Preference: Weekly
+
+Please generate a suggested weekly gaming schedule that:  
+1. Fits all sessions **within the user's specified daily available time ranges**.  
+2. Does **not exceed the total available time** for the week.  
+3. Spreads gameplay sensibly across the week based on the available time windows.  
+4. Includes a fun fact or gameplay tip for each session.
+
+After the schedule, provide a clear **step-by-step explanation** of how the total available time was allocated, including:  
+- Calculating total possible available time based on the daily windows  
+- Comparing it to the user's total allowed hours  
+- Showing how hours were assigned per day without exceeding daily available slots  
+- How the schedule respects both daily ranges and total weekly limit
+
+Example explanation format:  
+- Monday (8:00PM-10:00PM): 2 hours used, remaining hours X  
+- Tuesday (8:00PM-10:30PM): 2.5 hours used, remaining hours Y  
+- ... etc.  
+- Confirm total scheduled hours equal the total available time and all sessions fit inside the time ranges.
+
+Generate the full schedule and explanation based on the input above.
